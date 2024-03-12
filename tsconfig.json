@@ -19,6 +19,7 @@
     ],
     "paths": {
       "@app/*": ["./src/app/*"],
+      "@utils/*": ["./src/utils/*"],
       "@contexts/*": ["./src/contexts/*"],
       "@components/*": ["./src/components/*"],
       "@assets/*": ["./src/assets/*"]

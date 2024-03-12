@@ -4,10 +4,11 @@ import { useLLMChat } from "@contexts/WebLLM";
 import classNames from "classnames";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-
-import userPhoto from "@assets/images/user_photo.webp";
 import { AnimatedEllipses } from "@components/progress/AnimatedEllipses";
 import { useState } from "react";
+
+import userPhoto from "@assets/images/user_photo.webp";
+import aiDefaultPhoto from "@assets/images/ai_default_photo.webp";
 
 dayjs.extend(relativeTime);
 
@@ -36,7 +37,10 @@ export const ChatBox = ({ className }: ChatBoxProps) => {
               <div className="chat chat-start">
                 <div className="avatar chat-image">
                   <div className="w-10 rounded-full">
-                    <img src={""} alt={`profile pic for ${ai}`} />
+                    <img
+                      src={aiDefaultPhoto.src}
+                      alt={`profile pic for ${ai}`}
+                    />
                   </div>
                 </div>
 
@@ -63,7 +67,11 @@ export const ChatBox = ({ className }: ChatBoxProps) => {
                 <div className="avatar chat-image">
                   <div className="w-10 rounded-full">
                     <img
-                      src={entry.username === "user" ? userPhoto.src : ""}
+                      src={
+                        entry.username === "user"
+                          ? userPhoto.src
+                          : aiDefaultPhoto.src
+                      }
                       alt={`profile pic for ${entry.username}`}
                     />
                   </div>
