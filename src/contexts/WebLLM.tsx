@@ -17,7 +17,7 @@ import { type AIModel, AVAILABLE_AI_MODELS } from "../models";
 
 export interface UIMessage {
   id: string;
-  model?: AIModel;
+  model: AIModel;
   params: ChatCompletionMessageParam;
   timestamp: number;
 }

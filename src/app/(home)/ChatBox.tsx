@@ -161,20 +161,22 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
         <div
           className={cn(
             "w-10 rounded-full",
-            model ? "ring ring-offset-1" : "",
-            model ? model.theme.ring : "",
+            model.theme.ring,
+            message.params.role !== "user" ? "ring ring-offset-1" : "",
           )}
         >
           {/** biome-ignore lint/performance/noImgElement: not necessary */}
           <img
-            src={!model ? userPhoto.src : model.imageUrl}
-            alt={`profile pic for ${model?.displayName || "the user"}`}
+            src={
+              message.params.role === "user" ? userPhoto.src : model.imageUrl
+            }
+            alt={`profile pic for ${message.params.role === "user" ? "the user" : model.displayName}`}
           />
         </div>
       </div>
 
       <div className="chat-header">
-        {model?.displayName || "You"}{" "}
+        {message.params.role === "user" ? "You" : model.displayName}{" "}
         {timestamp ? (
           <time className="text-slate-500 text-xs">
             {dayjs(timestamp).fromNow()}

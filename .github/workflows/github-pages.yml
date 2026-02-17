@@ -32,12 +32,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-          cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -53,7 +52,7 @@ jobs:
       - name: Build Static HTML with Next.js
         run: bunx next build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./out
 
