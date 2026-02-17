@@ -1,5 +1,5 @@
-import { useLLMChat } from "@contexts/WebLLM";
-import { Avatar, AvatarFallback, AvatarImage } from "@design/base/avatar";
+import { useLLMChat } from "@/contexts/WebLLM";
+import { Avatar, AvatarFallback, AvatarImage } from "@/design/base/avatar";
 import {
   Combobox,
   ComboboxContent,
@@ -7,14 +7,14 @@ import {
   ComboboxInput,
   ComboboxItem,
   ComboboxList,
-} from "@design/base/combobox";
+} from "@/design/base/combobox";
 import {
   Item,
   ItemContent,
   ItemDescription,
   ItemMedia,
   ItemTitle,
-} from "@design/base/item";
+} from "@/design/base/item";
 import { type AIModel, AVAILABLE_AI_MODELS } from "../../models";
 
 export const PageHeader = () => {
@@ -29,11 +29,11 @@ export const PageHeader = () => {
       <div className="flex flex-1 flex-row justify-end">
         <Combobox
           items={AVAILABLE_AI_MODELS}
-          itemToStringValue={(model: AIModel) => model.model_id}
-          defaultInputValue={currentModel.model_id}
+          itemToStringValue={(model: AIModel) => model.id}
+          defaultInputValue={currentModel.id}
           onInputValueChange={(inputValue) => {
             const matchingModel = AVAILABLE_AI_MODELS.find(
-              (model) => model.model_id === inputValue,
+              (model) => model.id === inputValue,
             );
 
             if (matchingModel) {
@@ -46,17 +46,19 @@ export const PageHeader = () => {
             <ComboboxEmpty>No models found</ComboboxEmpty>
             <ComboboxList>
               {(model: AIModel) => (
-                <ComboboxItem key={model.model_id} value={model.model_id}>
+                <ComboboxItem key={model.id} value={model.id}>
                   <Item size="xs">
                     <ItemMedia>
                       <Avatar>
                         <AvatarImage src={model.imageUrl} />
-                        <AvatarFallback>{model.model}</AvatarFallback>
+                        <AvatarFallback>
+                          {model.displayName.charAt(0)}
+                        </AvatarFallback>
                       </Avatar>
                     </ItemMedia>
                     <ItemContent>
-                      <ItemTitle>{model.model_id}</ItemTitle>
-                      <ItemDescription>{model.model}</ItemDescription>
+                      <ItemTitle>{model.displayName}</ItemTitle>
+                      <ItemDescription>{model.id}</ItemDescription>
                     </ItemContent>
                   </Item>
                 </ComboboxItem>

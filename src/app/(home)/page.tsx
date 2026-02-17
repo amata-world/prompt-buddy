@@ -1,7 +1,7 @@
 "use client";
 
-import { useLLMChat } from "@contexts/WebLLM";
-import { cn } from "@lib/utils";
+import { useLLMChat } from "@/contexts/WebLLM";
+import { cn } from "@/lib/utils";
 import { ChatBox } from "./ChatBox";
 import { PageHeader } from "./PageHeader";
 

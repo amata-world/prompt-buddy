@@ -1,15 +1,5 @@
 "use client";
 
-import userPhoto from "@assets/images/user_photo.webp";
-import { AnimatedEllipses } from "@components/progress/AnimatedEllipses";
-import { type UIMessage, useLLMChat } from "@contexts/WebLLM";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupTextarea,
-} from "@design/base/input-group";
-import { cn } from "@lib/utils";
 import type {
   ChatCompletionContentPart,
   ChatCompletionMessageParam,
@@ -19,6 +9,16 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { LoaderCircleIcon, SendHorizonalIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import Markdown, { type Components } from "react-markdown";
+import userPhoto from "@/assets/images/user_photo.webp";
+import { AnimatedEllipses } from "@/components/progress/AnimatedEllipses";
+import { type UIMessage, useLLMChat } from "@/contexts/WebLLM";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupTextarea,
+} from "@/design/base/input-group";
+import { cn } from "@/lib/utils";
 
 dayjs.extend(relativeTime);
 

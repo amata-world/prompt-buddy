@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import { generateSocialMetaTags } from "@utils/metatags";
+import { generateSocialMetaTags } from "@/utils/metatags";
 import { Suspense } from "react";
 
 const nunitoSans = Nunito_Sans({ variable: "--font-sans" });

@@ -41,8 +41,6 @@ export const WebLLMProvider = ({ children }: { children: ReactNode }) => {
     () =>
       new MLCEngine({
         initProgressCallback: (report) => {
-          console.log("webllm:", report.text);
-
           if (report.progress === 1) {
             setChatState({ status: "initializing", progress: 100 });
           } else {
@@ -64,7 +62,7 @@ export const WebLLMProvider = ({ children }: { children: ReactNode }) => {
     const modelId = searchParams.get("model");
 
     return (
-      AVAILABLE_AI_MODELS.find((model) => model.model_id === modelId) ||
+      AVAILABLE_AI_MODELS.find((model) => model.id === modelId) ||
       AVAILABLE_AI_MODELS[0]
     );
   });
@@ -80,9 +78,9 @@ export const WebLLMProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const modelId = searchParams.get("model");
-    if (modelId !== modelRef.current.model_id) {
+    if (modelId !== modelRef.current.id) {
       const preferredModel = AVAILABLE_AI_MODELS.find(
-        (model) => model.model_id === modelId,
+        (model) => model.id === modelId,
       );
 
       if (preferredModel) {
@@ -174,7 +172,7 @@ export const WebLLMProvider = ({ children }: { children: ReactNode }) => {
     timeoutRef.current = setTimeout(main, 300);
 
     async function main() {
-      await engine.reload(model.model_id);
+      await engine.reload(model.id);
 
       setChatState({ status: "ready", progress: 100 });
 
@@ -189,7 +187,7 @@ export const WebLLMProvider = ({ children }: { children: ReactNode }) => {
       messages,
       sendMessage,
       setModel: (model) => {
-        router.push(`?model=${model.model_id}`);
+        router.push(`?model=${model.id}`);
       },
       ...chatState,
     };
