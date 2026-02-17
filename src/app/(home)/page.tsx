@@ -1,33 +1,25 @@
 "use client";
 
+import { useLLMChat } from "@contexts/WebLLM";
+import { cn } from "@lib/utils";
 import { ChatBox } from "./ChatBox";
+import { PageHeader } from "./PageHeader";
 
 export default function HomePage() {
+  const { currentModel } = useLLMChat();
+
   return (
-    <div className="flex h-screen min-h-screen w-full flex-col bg-blue-400">
-      <div className="flex flex-1 flex-col items-center overflow-hidden lg:h-full lg:flex-row">
-        <section className="pt-2 lg:flex-1 lg:p-4">
-          <h1 className="text-center text-xl lg:text-3xl">Prompt Buddy</h1>
-        </section>
+    <div
+      className={cn(
+        "flex h-screen min-h-screen w-full flex-col transition-colors duration-700",
+        currentModel.theme.bg,
+      )}
+    >
+      <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center overflow-hidden px-4 pb-4 lg:h-full">
+        <PageHeader />
 
-        <section className="flex w-full flex-1 items-center justify-center overflow-hidden p-2 lg:h-[640px] lg:max-h-full lg:w-auto lg:px-4 lg:pt-4">
-          <ChatBox className="size-full" />
-        </section>
+        <ChatBox className="size-full" />
       </div>
-
-      <footer className="flex flex-row justify-end px-2 pb-2 lg:p-2">
-        <div className="text-xs">
-          made by{" "}
-          <a
-            href="https://amata.world"
-            target="_blank"
-            rel="noreferrer nofollow"
-            className="link link-primary"
-          >
-            amata.world
-          </a>
-        </div>
-      </footer>
     </div>
   );
 }

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { generateSocialMetaTags } from "@utils/metatags";
+import { Suspense } from "react";
+
+const nunitoSans = Nunito_Sans({ variable: "--font-sans" });
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,9 +34,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={nunitoSans.variable}>
       <body className={inter.className}>
-        <main>{children}</main>
+        <main>
+          <Suspense>{children}</Suspense>
+        </main>
       </body>
     </html>
   );
